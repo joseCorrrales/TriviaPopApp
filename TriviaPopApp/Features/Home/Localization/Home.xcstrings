@@ -1,0 +1,57 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "button.challenge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test Yourself"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prueba tu conocimiento"
+          }
+        }
+      }
+    },
+    "button.playervsplayer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Player vs player"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Jugador contra jugador"
+          }
+        }
+      }
+    },
+    "button.versus" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Tricky Questions"
+          }
+        },
+        "es-US" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "10 preguntas retadoras"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}
