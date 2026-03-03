@@ -7,19 +7,16 @@
 
 import Foundation
 
-
-
-
-
 enum AppRoute: Hashable {
-
+    
     case home
     case matchMaking
     case portalLoading
-     case soloWheel
-     case soloLoading(category: Category)
+    case soloWheel
+    case soloLoading(category: Category)
     case soloQuestion(listOfQuestions: [Question], index: Int)
-     case soloResults(result: GameResult)
+    case soloResults(result: GameResult)
+ 
     
 }
 
