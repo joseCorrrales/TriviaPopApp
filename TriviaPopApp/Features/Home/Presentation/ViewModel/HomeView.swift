@@ -14,8 +14,6 @@ struct HomeView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    
-    
     var body: some View {
         ZStack {
             
@@ -36,7 +34,6 @@ struct HomeView: View {
                 HomeCardButton(bgImage: "Home/versusMode",text: "Correct 11", height: 130
                                ,width: 400) {
                     viewModel.startVersus()
-                    
                 }
                 
                 SoloCard( height: 130

@@ -18,7 +18,7 @@ struct LobbyView: View {
     
     var body: some View {
            List(viewModel.onlineUsers) { user in
-               Text(user.id)
+               Text(user.name)
             }
             .navigationTitle("Player online")
             .task { await viewModel.startListening() }

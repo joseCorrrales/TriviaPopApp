@@ -40,12 +40,6 @@ final class LobbyViewModel: ObservableObject {
         }
     }
     
-/*    func onAppear() {
-        Task {
-            try? await startPresenceUseCase.execute(displayName: "Player 1")
-        }
-    }
-    */
     func onDisappear() {
         stopPresenceUseCase.execute()
     }
