@@ -13,29 +13,42 @@ import Combine
 final class LobbyViewModel: ObservableObject {
     
     @Published var onlineUsers: [OnlineUser] = []
+    
     private let router: AppRouter
     private let userService = UserService()
     private var handle: DatabaseHandle?
-
-    init(router: AppRouter) {
+    
+    private let startPresenceUseCase: StartPresenceUseCase
+    private let stopPresenceUseCase: StopPresenceUseCase
+    
+    init(router: AppRouter, startPresenceUseCase: StartPresenceUseCase,
+         stopPresenceUseCase: StopPresenceUseCase) {
+        
         self.router = router
+        self.startPresenceUseCase = startPresenceUseCase
+        self.stopPresenceUseCase = stopPresenceUseCase
     }
-
-    func startListening() {
+    
+    func startListening() async {
+        Task {
+            try? await startPresenceUseCase.execute(displayName: "Player 1")
+        }
+        
         guard handle == nil else { return }
-        PresenceService.shared.startPresence()
         handle = userService.listenToOnlineUsers { [weak self] users in
             self?.onlineUsers = users
         }
     }
     
-    func stopListening() {
-        PresenceService.shared.stopPresence()
-        
-        if let handle = handle {
-            userService.stopListening(handle: handle)
+/*    func onAppear() {
+        Task {
+            try? await startPresenceUseCase.execute(displayName: "Player 1")
         }
     }
+    */
+    func onDisappear() {
+        stopPresenceUseCase.execute()
+    }
     
-  
+    
 }

@@ -16,20 +16,19 @@ import FirebaseDatabase
 struct TriviaPopAppApp: App {
     
     @StateObject private var router = AppRouter()
- 
+    
     
     init() {
-            FirebaseApp.configure()
+        FirebaseApp.configure()
         
-            Auth.auth().signInAnonymously { authResult, error in
-            if let error = error {
-                print("Error al iniciar sesión anónima: \(error.localizedDescription)")
-                return
-            }
-            guard let user = authResult?.user else { return }
-            print("¡Sesión iniciada con éxito! El UID es: \(user.uid)")
+        Task {
+            if Auth.auth().currentUser == nil {
+                _ = try? await Auth.auth().signInAnonymously()
             }
         }
+    }
+    
+    
     
     var body: some Scene {
         WindowGroup {
@@ -52,8 +51,11 @@ struct TriviaPopAppApp: App {
             
         case .matchMaking:
             
+            let repository = FirebasePresenceRepository()
+            let startPresenceUseCase = StartPresenceUseCase(repository: repository)
+            let stopPresenceUseCase = StopPresenceUseCase(repository: repository)
             
-            LobbyView(viewModel: LobbyViewModel(router: router))
+            LobbyView(viewModel: LobbyViewModel(router: router,startPresenceUseCase:startPresenceUseCase ,stopPresenceUseCase: stopPresenceUseCase))
             /*   let repository = GameCenterMatchmakingRepository()
              let useCase = SearchOpponentUseCase(repository: repository)
              
@@ -83,5 +85,4 @@ struct TriviaPopAppApp: App {
         }
     }
 }
-
 

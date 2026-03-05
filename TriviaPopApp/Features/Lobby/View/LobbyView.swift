@@ -21,12 +21,10 @@ struct LobbyView: View {
                Text(user.id)
             }
             .navigationTitle("Player online")
-            
-            .onAppear {
-                viewModel.startListening()
-            }
-            .onDisappear {
-                viewModel.stopListening()
+            .task { await viewModel.startListening() }
+        
+            .onDisappear() {
+                viewModel.onDisappear()
             }
     }
 }
